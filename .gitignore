@@ -1,0 +1,4 @@
+.venv
+.idea
+employee_management_system/migrations/**
+.DS_Store
