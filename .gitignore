@@ -1,4 +1,4 @@
 .venv
 .idea
-employee_management_system/migrations/**
+employee_management_system/__pycache__/**
 .DS_Store
