@@ -101,6 +101,7 @@ def employee_salary_list(request):
             additional_pay_percentage = 0
             team_leader_obj = TeamLeader.objects.all().filter(emp_name=emp.id)
             if len(team_leader_obj) != 0:
+                pass
                 additional_pay_percentage = TeamLeader.additional_pay_percentage
             emp_salary_list[emp.emp_name] = hf.calc_salary(emp.emp_hourly_rate, work_percent, additional_pay_percentage)
         return JsonResponse({'EmployeeSalary': emp_salary_list})
