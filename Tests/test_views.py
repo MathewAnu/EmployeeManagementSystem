@@ -1,4 +1,3 @@
-import pytest
 from django.test import TestCase
 from employee_management_system.models import Employee, WorkArrangement, TeamEmployee, TeamLeader, Team
 
