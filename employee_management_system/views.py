@@ -4,6 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .models import *
+import employee_management_system.helper_functions as hf
 
 
 @api_view(['GET', 'POST'])
@@ -86,3 +87,20 @@ def work_arragement_list(request):
         if obj_ser.is_valid():
             obj_ser.save()
             return Response(obj_ser.data, status=status.HTTP_201_CREATED)
+
+
+@api_view(['GET'])
+def employee_salary_list(request):
+    if request.method == 'GET':
+        emp_salary_list = {}
+        emp_list = Employee.objects.all()
+        for emp in emp_list:
+            work_percent = 0
+            for w_arrangement in emp.emp_work_arrangement.all():
+                work_percent += w_arrangement.work_time_percentange
+            additional_pay_percentage = 0
+            team_leader_obj = TeamLeader.objects.all().filter(emp_name=emp.id)
+            if len(team_leader_obj) != 0:
+                additional_pay_percentage = TeamLeader.additional_pay_percentage
+            emp_salary_list[emp.emp_name] = hf.calc_salary(emp.emp_hourly_rate, work_percent, additional_pay_percentage)
+        return JsonResponse({'EmployeeSalary': emp_salary_list})
