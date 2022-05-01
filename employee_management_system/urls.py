@@ -20,10 +20,14 @@ from employee_management_system import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('employee_management_system/Employee', views.employee_list),
-    path('employee_management_system/Employee/Salary', views.employee_salary_list),
+    path('employee_management_system/Employee/<str:req_emp_name>', views.employee_list),
+    path('employee_management_system/Salary', views.employee_salary_list),
     path('employee_management_system/Team/<str:req_team_name>', views.team_list),
     path('employee_management_system/Team', views.team_list),
     path('employee_management_system/TeamEmployee', views.team_employee_list),
+    path('employee_management_system/TeamEmployee/<str:req_emp_name>', views.team_employee_list),
     path('employee_management_system/TeamLeader', views.team_leader_list),
-    path('employee_management_system/WorkArrangement', views.work_arragement_list)
+    path('employee_management_system/TeamLeader/<str:req_emp_name>', views.team_leader_list),
+    path('employee_management_system/WorkArrangement', views.work_arragement_list),
+    path('employee_management_system/WorkArrangement/<int:req_wa_percent>', views.work_arragement_list)
 ]
