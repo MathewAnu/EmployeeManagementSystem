@@ -100,7 +100,7 @@ def team_employee_list(request, req_emp_name=None):
     if request.method == 'GET':
         team_employees_list = TeamEmployee.objects.all()
         obj_ser = TeamEmployeeSerializer(team_employees_list, many=True)
-        return JsonResponse({'TeamEmployee': obj_ser.data})
+        return JsonResponse({'TeamEmployee': obj_ser.data}, status=status.HTTP_200_OK)
     if request.method == 'POST':
         obj_ser = TeamEmployeeSerializer(data=request.data)
         if obj_ser.is_valid():
